@@ -1,0 +1,44 @@
+.header-container {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    background-color: #dbc1ac;
+    color: #ffffff;
+}
+
+.left-nav {
+    display: flex;
+    gap: 2px; /* Минимальное расстояние между кнопками "Главная" и "О нас" */
+}
+
+.site-title {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    padding-top: 6px;
+}
+.hello-user{
+    font-size: 14px;
+}
+
+.right-nav {
+    display: flex;
+    gap: 15px; /* Расстояние между кнопками "Регистрация" и "Авторизация" */
+    margin-left: auto; /* Раздвигаем контейнер вправо */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 500;
+    padding: 10px 15px;
+    border: 2px solid transparent;
+    border-radius: 5px; 
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    background-color: #e2b78c;
+    color: #38220f;
+    transform: scale(1.05);
+}
