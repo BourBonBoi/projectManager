@@ -1,103 +1,71 @@
-.title{
-    text-align: center;
-    color: #3d2a2b; 
-    font-size: 48px;
-    padding-bottom: 15px;
-}
-
-.base-form {
-    background-color: #d8c4b1; 
+/* Стили для формы регистрации */
+.register-form {
+    background-color: #fff;
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
 }
 
 .form-title {
-    text-align: center;
-    color: #3d2a2b; 
-    font-size: 48px;
-    padding-bottom: 15px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
 }
 
 .form-label {
     display: block;
-    margin-top: 15px;
-    color: #4b3c35; 
+    margin-bottom: 8px;
+    font-size: 14px;
+    color: #555;
+    text-align: left;
 }
 
 .form-input {
-    background-color: #ffffff;
     width: 100%;
     padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #a88c7b; 
-    border-radius: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
 }
 
 .form-input:focus {
-    border-color: #7f4e4a; 
+    border-color: #4a90e2;
     outline: none;
 }
 
 .form-button {
-    margin-top: 25px;
-    background-color: #7f4e4a; 
-    color: #ffffff; 
-    padding: 12px 20px;
-    border: none; 
-    border-radius: 5px; 
-    font-size: 18px; 
-    cursor: pointer;    
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    width: 100%;
+    padding: 12px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .form-button:hover {
-    background-color: #a88c7b; 
-    transform: scale(1.05);
+    background-color: #357ab7;
 }
 
-.form-button:active {
-    transform: scale(0.95); 
+.login-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
 }
 
-
-.about-section, .team-section, .contact-section {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 20px;
-    margin: 10px 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.login-link a {
+    color: #4a90e2;
+    text-decoration: none;
 }
 
-.about-title, .team-title, .contact-title {
-    font-size: 28px;
-    color: #3d2a2b;
-}
-
-.about-description {
-    font-size: 16px;
-    line-height: 1.5;
-}
-
-.team-member {
-    display: flex;
-    align-items: center;
-    margin: 10px 0;
-}
-
-.team-photo {
-    border-radius: 50%;
-    width: 80px;
-    height: 80px;
-    margin-right: 10px;
-}
-
-.team-info h3 {
-    margin: 0;
-    font-size: 20px;
+.login-link a:hover {
+    text-decoration: underline;
 }
