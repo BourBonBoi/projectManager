@@ -8,18 +8,34 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    // Функция для отправки формы
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        
-        // Можно добавить валидацию
+    
         if (password !== confirmPassword) {
             alert('Пароли не совпадают');
             return;
         }
-
-        // Здесь можно отправить данные на сервер
-        console.log('Регистрация:', { username, email, password });
+    
+        try {
+            const response = await fetch('http://localhost:5000/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, email, password })
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                alert('Регистрация успешна!');
+                // Можно сделать редирект на страницу входа или на главную страницу
+            } else {
+                alert(data.message);
+            }
+        } catch (error) {
+            alert('Ошибка при регистрации');
+        }
     };
 
     return (

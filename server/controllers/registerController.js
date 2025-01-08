@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 // Регистрация пользователя
@@ -6,29 +7,38 @@ exports.registerUser = async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
-        // Проверяем, существует ли уже пользователь с таким email
+        // Проверка, существует ли уже пользователь с таким email
         const userExists = await User.findOne({ email });
         if (userExists) {
             return res.status(400).json({ message: 'Пользователь с таким email уже существует' });
         }
 
-        // Создаем нового пользователя
-        const user = new User({
+        // Создание нового пользователя
+        const newUser = new User({
             username,
             email,
-            password,
+            password
         });
 
-        // Сохраняем пользователя в базе данных
-        await user.save();
+        // Сохранение пользователя в базе данных
+        await newUser.save();
 
-        // Создаем JWT токен
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+        // Генерация токена (если требуется)
+        console.log(process.env.SECRET_KEY); // Это должно вывести ваш секретный ключ
 
-        // Отправляем токен на клиент
-        res.status(201).json({ token, message: 'Пользователь зарегистрирован успешно' });
+        const token = jwt.sign({ id: newUser._id }, process.env.SECRET_KEY, { expiresIn: '1d' });
+
+        res.status(201).json({
+            message: 'Пользователь успешно зарегистрирован',
+            token,
+            user: {
+                id: newUser._id,
+                username: newUser.username,
+                email: newUser.email
+            }
+        });
     } catch (error) {
-        console.error('Ошибка регистрации:', error);
-        res.status(500).json({ message: 'Ошибка на сервере', error: error.message });
+        console.error(error);
+        res.status(500).json({ message: 'Ошибка сервера' });
     }
 };

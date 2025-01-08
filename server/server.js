@@ -1,13 +1,18 @@
-// server/server.js
-const express = require('express');
 const dotenv = require('dotenv');
+dotenv.config(); 
+
+console.log('SECRET_KEY:', process.env.SECRET_KEY);
+console.log('MONGO_URI:', process.env.MONGO_URI); // Для проверки переменной с URI MongoDB
+console.log('SECRET_KEY:', process.env.SECRET_KEY); // Для проверки переменной с секретным ключом
+
+const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
 
 // Руты для использования в маршрутах
 const indexRouter = require('./routes/indexRouter');
-const authRoutes = require('./routes/authRoutes');
+//const authRoutes = require('./routes/authRoutes');
 const registerRoutes = require('./routes/registerRoutes');
 
 
@@ -25,12 +30,16 @@ mongoose.connect('mongodb://127.0.0.1:27017/MakeProject', {
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:3000', // Добавьте этот параметр, если сервер и клиент на разных портах
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Content-Type']
+}));
 app.use(express.json()); // Для парсинга JSON тела запросов
 
 // Роуты
 app.use('/', indexRouter); // Главный роут
-app.use('/api/auth', authRoutes);  // Роуты для авторизации
+//app.use('/api/auth', authRoutes);  // Роуты для авторизации
 app.use('/api/register', registerRoutes); // Роуты для регистрации
 
 // Запуск сервера
@@ -38,3 +47,5 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Server running on port http://localhost:${PORT}`);
 });
+
+console.log(`${process.env.SECRET_KEY}`); // Должен вывести ваш JWT_SECRET
