@@ -6,6 +6,7 @@ import About from './pages/About';    // Импортируем About
 import Login from './pages/Login';    // Импортируем Login
 import Register from './pages/Register';  // Импортируем Register
 import Users from './pages/Users';    // Импортируем Users
+import Profile from './pages/Profile';
 import './styles/App.css';  // Глобальные стили
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />  {/* Страница входа */}
           <Route path="/register" element={<Register />} />  {/* Страница регистрации */}
           <Route path="/users" element={<Users />} />  {/* Страница пользователей */}
+          <Route path="/profile" element={<Profile />} />  {/* Страница пользователей */}
         </Routes>
       </div>
     </Router>

@@ -14,6 +14,7 @@ const Header = () => {
                         <div className="hello-user">Привет, {username}</div>
                     </div>
                     <Link to="/" className="nav-link">Главная</Link>
+                    <Link to="/profile" className="nav-link">Мой профиль</Link>
                     <Link to="/users" className="nav-link">Пользователи</Link>
                     <Link to="/about" className="nav-link">О нас</Link>
                 </nav>
