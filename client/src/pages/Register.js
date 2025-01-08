@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/Form.css'; // Подключаем стили для хедера
+import '../styles/Form.css';
 
 const Register = () => {
     // Состояния для хранения значений полей формы

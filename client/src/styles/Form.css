@@ -1,4 +1,15 @@
 /* Стили для формы регистрации */
+.form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+}
+
 .register-form {
     background-color: #fff;
     padding: 20px;
@@ -67,5 +78,20 @@
 }
 
 .login-link a:hover {
+    text-decoration: underline;
+}
+
+.register-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
+}
+
+.register-link a {
+    color: #4a90e2;
+    text-decoration: none;
+}
+
+.register-link a:hover {
     text-decoration: underline;
 }
