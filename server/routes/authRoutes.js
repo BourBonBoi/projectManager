@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const { loginUser } = require('../controllers/authController');  // Подключаем контроллер
 
-router.post('/login', (req, res) => {
-    res.send('Login route');
-});
+// Маршрут для логина
+router.post('/login', loginUser);  // Привязываем функцию loginUser к POST запросу на /login
 
 module.exports = router;

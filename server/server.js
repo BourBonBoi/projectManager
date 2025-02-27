@@ -12,7 +12,7 @@ const mongoose = require('mongoose');
 
 // Руты для использования в маршрутах
 const indexRouter = require('./routes/indexRouter');
-//const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes');
 const registerRoutes = require('./routes/registerRoutes');
 
 
@@ -39,8 +39,8 @@ app.use(express.json()); // Для парсинга JSON тела запросо
 
 // Роуты
 app.use('/', indexRouter); // Главный роут
-//app.use('/api/auth', authRoutes);  // Роуты для авторизации
 app.use('/api/register', registerRoutes); // Роуты для регистрации
+app.use('/api/auth', authRoutes);// Префикс для авторизации
 
 // Запуск сервера
 const PORT = process.env.PORT || 5000;
@@ -48,4 +48,3 @@ app.listen(PORT, () => {
     console.log(`Server running on port http://localhost:${PORT}`);
 });
 
-console.log(`${process.env.SECRET_KEY}`); // Должен вывести ваш JWT_SECRET
