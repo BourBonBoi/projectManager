@@ -1,0 +1,101 @@
+/* Profile.css */
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f4f4f9;
+}
+
+.profile-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    text-align: center;
+}
+
+.profile-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.profile-item {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.profile-item label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.profile-item input,
+.profile-item select {
+    width: 100%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.profile-item input[type="file"] {
+    padding: 0;
+}
+
+
+
+button:hover {
+    background-color: #45a049;
+}
+
+
+
+
+.edit-button, .save-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.edit-button:hover, .save-button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+}
+
+.success-message {
+    color: green;
+    text-align: center;
+}
+
+.avatar-preview img {
+    max-width: 100px;
+    margin-top: 10px;
+    border-radius: 50%;
+}
+
+.avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+
+@media (min-width: 600px) {
+    .profile-info {
+        grid-template-columns: 1fr 1fr;
+    }
+}

@@ -21,13 +21,18 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    role:{
+    role: {
         type: String,
-        required: false  
+        default: 'user', // Роль по умолчанию — 'user'
+        enum: ['user', 'admin']
     },
-    position:{
+    position: {
         type: String,
-        required: false  
+        required: false
+    },
+    avatar: {
+        type: String,  // Для хранения URL изображения
+        required: false
     }
 });
 
@@ -36,7 +41,7 @@ userSchema.pre('save', async function(next) {
     if (!this.isModified('password')) {
         return next();
     }
-    
+
     const salt = await bcrypt.genSalt(10);
     this.password = await bcrypt.hash(this.password, salt);
     next();

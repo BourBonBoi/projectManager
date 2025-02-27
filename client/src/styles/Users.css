@@ -1,0 +1,62 @@
+/* Users.css */
+
+/* Основной контейнер для страницы пользователей */
+.users-container {
+    margin: 20px;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Заголовок страницы */
+.users-title {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Сообщение об ошибке */
+.error-message {
+    color: red;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* Информационное сообщение */
+.info-message {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* Стили для таблицы пользователей */
+.users-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* Стили для ячеек таблицы */
+.users-table th,
+.users-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+/* Стили для заголовков таблицы */
+.users-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+}
+
+/* Стиль для строк таблицы */
+.users-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Стиль для строк при наведении */
+.users-table tr:hover {
+    background-color: #ddd;
+}

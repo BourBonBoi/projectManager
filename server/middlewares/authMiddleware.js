@@ -1,20 +1,21 @@
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
-// Мидлвар для проверки авторизации через токен
-const protect = (req, res, next) => {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
-    
+const authMiddleware = async (req, res, next) => {
+    const token = req.header('Authorization'); // Ожидаем токен в заголовке Authorization
+
     if (!token) {
-        return res.status(401).json({ message: 'Нет токена авторизации' });
+        return res.status(401).json({ message: 'No token, authorization denied' });
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET);
-        req.user = decoded;
+        const decoded = jwt.verify(token, process.env.SECRET_KEY); // Проверка токена
+        req.user = decoded.user; // Сохраняем информацию о пользователе в запрос
         next();
     } catch (error) {
-        res.status(401).json({ message: 'Неверный токен' });
+        res.status(401).json({ message: 'Token is not valid' });
     }
 };
 
-module.exports = { protect };
+module.exports = authMiddleware;
+
