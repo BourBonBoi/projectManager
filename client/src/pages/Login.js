@@ -1,35 +1,36 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Замените useHistory на useNavigate
+import { useUser } from '../context/UserContext'; // Хук для работы с контекстом
 import '../styles/Form.css';
 
 const Login = () => {
-    // Состояния для хранения значений полей формы
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null); // Для хранения ошибок
+    const { setUserData } = useUser(); // Получаем функцию для обновления данных о пользователе
+    const navigate = useNavigate(); // Используем useNavigate вместо useHistory
 
-    // Функция для отправки формы
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Отправка данных на сервер для авторизации
         try {
-            const response = await fetch('http://localhost:5000/api/auth/login', {  // Укажите ваш URL для бэкенда
+            const response = await fetch('http://localhost:5000/api/auth/login', {  // Ваш endpoint для авторизации
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ email, password }),  // Отправляем данные в формате JSON
+                body: JSON.stringify({ email, password }),
             });
 
             const data = await response.json();
 
             if (response.ok) {
-                // Успешный логин - сохраняем токен в localStorage или в состоянии приложения
-                console.log('Авторизация успешна:', data);
-                localStorage.setItem('token', data.token);  // Сохраняем токен
-                // Здесь можно направить пользователя на другую страницу после успешного логина
+                // Успешный логин - сохраняем токен в localStorage и обновляем контекст
+                localStorage.setItem('token', data.token); // Сохраняем токен
+                setUserData(data.user);  // Обновляем состояние в контексте данными о пользователе
+                navigate('/');  // Перенаправляем на главную страницу
             } else {
-                // Если ошибка (например, неправильный пароль или email), выводим сообщение
+                // Ошибка авторизации
                 setError(data.message || 'Ошибка при авторизации');
             }
         } catch (error) {
@@ -38,12 +39,13 @@ const Login = () => {
         }
     };
 
-    return  (
+    return (
         <div className="form-container">
             <h1 className="form-title">Авторизация</h1>
             <form className="register-form" onSubmit={handleSubmit}>
                 <label className="form-label" htmlFor="email">Email:</label>
-                <input className="form-input"
+                <input
+                    className="form-input"
                     type="email"
                     id="email"
                     value={email}
@@ -51,9 +53,10 @@ const Login = () => {
                     required
                     placeholder="Введите ваш email"
                 />
-                
+
                 <label className="form-label" htmlFor="password">Пароль:</label>
-                <input className="form-input"
+                <input
+                    className="form-input"
                     type="password"
                     id="password"
                     value={password}
@@ -61,11 +64,11 @@ const Login = () => {
                     required
                     placeholder="Введите пароль"
                 />
-                
+
                 <button type="submit" className="form-button">Войти</button>
             </form>
 
-            {error && <p className="error-message">{error}</p>}  {/* Показываем ошибку, если есть */}
+            {error && <p className="error-message">{error}</p>}
 
             <p className="register-link">Нет аккаунта? <a href="/register">Зарегистрироваться</a></p>
         </div>
