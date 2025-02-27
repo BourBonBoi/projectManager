@@ -1,10 +1,17 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { useUser } from '../context/UserContext'; // Импортируем хук для работы с контекстом
+import { Link, useNavigate } from 'react-router-dom'; // useNavigate для редиректа
+import { useUser } from '../context/UserContext'; // Хук для доступа к контексту пользователя
 import '../styles/Header.css'; // Подключаем стили для хедера
 
 const Header = () => {
-    const { user } = useUser(); // Получаем данные пользователя из контекста
+    const { user, logout } = useUser(); // Получаем данные пользователя и функцию logout из контекста
+    const navigate = useNavigate(); // Хук для редиректа
+
+    // Функция для выхода из системы
+    const handleLogout = () => {
+        logout(); // Вызываем logout для очистки данных
+        navigate('/login'); // Перенаправляем пользователя на страницу входа
+    };
 
     return (
         <header>
@@ -28,7 +35,9 @@ const Header = () => {
                             <Link to="/login" className="nav-link">Авторизация</Link>
                         </>
                     ) : (
-                        <Link to="/logout" className="nav-link">Выход</Link>
+                        <button onClick={handleLogout} className="nav-link">
+                            Выход
+                        </button>
                     )}
                 </div>
             </div>

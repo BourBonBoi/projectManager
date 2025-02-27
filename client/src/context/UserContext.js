@@ -5,14 +5,19 @@ const UserContext = createContext();
 
 // Создаем провайдер для контекста
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null); // Храним данные о пользователе
+    const [user, setUser] = useState(null);
 
     const setUserData = (data) => {
-        setUser(data); // Обновляем данные о пользователе
+        setUser(data); // Сохраняем данные пользователя
+    };
+
+    const logout = () => {
+        setUser(null); // Убираем данные о пользователе
+        localStorage.removeItem('token'); // Удаляем токен
     };
 
     return (
-        <UserContext.Provider value={{ user, setUserData }}>
+        <UserContext.Provider value={{ user, setUserData, logout }}>
             {children}
         </UserContext.Provider>
     );
